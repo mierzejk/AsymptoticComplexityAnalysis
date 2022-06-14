@@ -14,19 +14,17 @@ public class ReverseComparer<T> : Comparer<T>
     /// </summary>
     public new static ReverseComparer<T> Default { get; } = new(Comparer<T>.Default);
         
-    public Comparer<T> InnerComparer { get; }
+    public Comparer<T> BaseComparer { get; }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ReverseComparer{T}"/> class to the <see cref="Comparer{T}"/>
-    /// object, whose <seealso cref="Comparer{T}.Compare"/> result will be reversed.
+    /// Initializes a new instance of the <see cref="ReverseComparer{T}"/> class to a specified base comparer.
     /// </summary>
-    /// <param name="innerComparer"></param>
-    public ReverseComparer(Comparer<T> innerComparer)
+    /// <param name="baseComparer">An instance of the <see cref="Comparer{T}"/> class, whose <see cref="Comparer{T}.Compare"/> result will be reversed.</param>
+    public ReverseComparer(Comparer<T> baseComparer)
     {
-        var t = new string("");
-        ArgumentNullException.ThrowIfNull(innerComparer);
-        this.InnerComparer = innerComparer;
+        ArgumentNullException.ThrowIfNull(baseComparer);
+        this.BaseComparer = baseComparer;
     }
 
-    public override int Compare(T? x, T? y) => this.InnerComparer.Compare(y, x);
+    public override int Compare(T? x, T? y) => this.BaseComparer.Compare(y, x);
 }

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <Authors>Krzysztof Mierzejewski</Authors>
+        <Description>LGTCP task 1.</Description>
+        <Copyright>2022 Krzysztof Mierzejewski</Copyright>
+        <Company>Krzysztof Mierzejewski</Company>
+    </PropertyGroup>
+
+</Project>
