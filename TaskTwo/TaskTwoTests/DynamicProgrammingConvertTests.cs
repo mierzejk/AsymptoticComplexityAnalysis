@@ -10,14 +10,8 @@ namespace TaskTwoTests
     
     public sealed class DynamicProgrammingConvertTests
     {
-        private ILargestSquare _algorithm;
+        private readonly ILargestSquare _algorithm = new DynamicProgramming();
         
-        [SetUp]
-        public void Setup()
-        {
-            this._algorithm = new DynamicProgramming();
-        }
-
         [Test]
         public void LargestSquare_UintMatrix_ExplicitConverted()
         {
