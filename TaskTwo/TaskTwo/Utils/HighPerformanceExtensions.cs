@@ -20,7 +20,7 @@ namespace TaskTwo.Utils
             value = item.Value;
         }
         
-        /// <summary>Converts a 2D <seealso cref="ReadOnlyMemory2D{T}"/> view to a two-dimensional array.</summary>
+        /// <summary>Converts a 2D <seealso cref="ReadOnlyMemory2D{T}"/> view to a two-dimensional <typeparamref name="TResult"/> array.</summary>
         /// <param name="memory">The view to be converted.</param>
         /// <param name="convert">The function to convert a <typeparamref name="T"/> object to a <typeparamref name="TResult"/> instance.</param>
         /// <typeparam name="T">The <paramref name="memory"/> type parameter.</typeparam>
@@ -40,7 +40,6 @@ namespace TaskTwo.Utils
 
                 convert = value => (TResult)converter.ConvertTo(value!, tOut);
             }
-
 
             var result = new TResult?[memory.Height, memory.Width];
             Parallel.ForEach(Range(0, memory.Height), i => {

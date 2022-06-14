@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Toolkit.HighPerformance;
 using TaskTwo;
 using TaskTwo.Utils;
 
@@ -11,4 +12,6 @@ Console.WriteLine(a.GetLargestSquareArea(new bool[4, 2]));
 Console.WriteLine(a.GetLargestSquareArea(b));
 Console.WriteLine(a.GetLargestSquareArea(vv));
 Console.WriteLine(a.GetLargestSquareArea(v));
+ReadOnlyMemory2D<DateTime> dt = new DateTime[0, 0];
+Console.WriteLine(a.GetLargestSquareArea(dt.Convert<DateTime, bool>()));
 
