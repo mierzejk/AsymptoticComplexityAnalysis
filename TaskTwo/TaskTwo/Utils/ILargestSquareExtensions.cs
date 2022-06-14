@@ -10,6 +10,19 @@ namespace TaskTwo.Utils
     public static class LargestSquareExtensions
     {
         /// <summary>
+        /// Given a two-dimensional matrix of <typeparamref name="T"/> values, returns the area of the largest square
+        /// that contains only true elements.
+        /// </summary>
+        /// <param name="object">The object being extended.</param>
+        /// <param name="matrix">A two-dimensional array of binary values.</param>
+        /// <param name="convert">The function to convert a <typeparamref name="T"/> object to a <seealso cref="bool"/> instance.</param>
+        /// <returns>The area of the largest square that contains only unities.</returns>
+        public static uint GetLargestSquareArea<T>(this ILargestSquare @object,
+                                                   in ReadOnlyMemory2D<T?> matrix,
+                                                   Func<T?, bool>? convert = null) =>
+            @object.GetLargestSquareArea(matrix.Convert(convert));
+        
+        /// <summary>
         /// Given a two-dimensional matrix of <seealso cref="uint"/> values, returns the area of the largest square
         /// that contains only unities.
         /// </summary>

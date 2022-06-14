@@ -13,5 +13,6 @@ Console.WriteLine(a.GetLargestSquareArea(b));
 Console.WriteLine(a.GetLargestSquareArea(vv));
 Console.WriteLine(a.GetLargestSquareArea(v));
 ReadOnlyMemory2D<DateTime> dt = new DateTime[0, 0];
-Console.WriteLine(a.GetLargestSquareArea(dt.Convert<DateTime, bool>()));
+Console.WriteLine(a.GetLargestSquareArea(dt));
+Console.WriteLine(a.GetLargestSquareArea<DateTime>(new DateTime[0, 0]));
 

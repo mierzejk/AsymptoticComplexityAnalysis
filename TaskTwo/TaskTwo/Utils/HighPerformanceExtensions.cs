@@ -20,10 +20,10 @@ namespace TaskTwo.Utils
             value = item.Value;
         }
         
-        /// <summary>Converts a 2D <seealso cref="ReadOnlyMemory2D{T}"/> view to a two-dimensional <typeparamref name="TResult"/> array.</summary>
+        /// <summary>Converts a 2D <seealso cref="ReadOnlyMemory2D{T}"/> memory view to a two-dimensional <typeparamref name="TResult"/> array.</summary>
         /// <param name="memory">The view to be converted.</param>
         /// <param name="convert">The function to convert a <typeparamref name="T"/> object to a <typeparamref name="TResult"/> instance.</param>
-        /// <typeparam name="T">The <paramref name="memory"/> type parameter.</typeparam>
+        /// <typeparam name="T">The <paramref name="memory"/> view type parameter.</typeparam>
         /// <typeparam name="TResult">The outcome type parameter.</typeparam>
         /// <returns>A two-dimensional array of the <typeparamref name="TResult"/> type.</returns>
         /// <exception cref="ArgumentException">There is no function available to convert a <typeparamref name="T"/> object to a <typeparamref name="TResult"/> instance.</exception>
