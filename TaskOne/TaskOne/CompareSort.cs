@@ -39,5 +39,5 @@ public abstract class CompareSort<T> : ISort<T>
     public T[] Sort(IEnumerable<T> collection, bool reverse = false) =>
         this.Sort(collection, reverse ? this._reverseComparer : this._comparer);
 
-    public abstract T[] Sort(IEnumerable<T> collection, Comparer<T> comparer);
+    public abstract T[] Sort(IEnumerable<T> collection, Comparer<T>? comparer);
 }
