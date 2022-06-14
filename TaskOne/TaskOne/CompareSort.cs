@@ -7,7 +7,7 @@ using Utils;
 /// <summary>
 /// Provides a base class for implementations of the <see cref="ISort{T}"/> generic interface.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The type of objects to sort.</typeparam>
 public abstract class CompareSort<T> : ISort<T>
 {
     /// <summary>
