@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using static System.Linq.Enumerable;
@@ -19,13 +20,23 @@ public sealed class PriorityQueueSort<T> : CompareSort<T>
     public PriorityQueueSort(Comparer<T>? comparer = null, ReverseComparer<T>? reverseComparer = null)
         : base(comparer, reverseComparer) { }
 
-    public override void Sort(IList<T> collection, Comparer<T> comparer)
+    public override T[] Sort(IEnumerable<T> collection, Comparer<T>? comparer)
     {
-        var minHeap = new PriorityQueue<T, T>(collection.Count, comparer);
+        ArgumentNullException.ThrowIfNull(collection);
+        
+        PriorityQueue<T, T> minHeap;
+        if (collection is ICollection<T> sized)
+            minHeap = new PriorityQueue<T, T>(sized.Count, comparer);
+        else
+            minHeap = new PriorityQueue<T, T>(comparer);
+        
         minHeap.EnqueueRange(from item in collection
                              select (item, item));
-        
-        foreach (var i in Range(0, minHeap.Count))
-            collection[i] = minHeap.Dequeue();
+
+        var result = new T[minHeap.Count];
+        foreach (var i in Range(0, result.Length))
+            result[i] = minHeap.Dequeue();
+
+        return result;
     }
 }
