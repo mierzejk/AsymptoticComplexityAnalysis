@@ -32,12 +32,12 @@ public abstract class CompareSort<T> : ISort<T>
     }
 
     /// <summary>
-    /// Sorts in-place the <paramref name="collection"/> elements.
+    /// Sorts the <paramref name="collection"/> elements.
     /// </summary>
-    /// <param name="collection">The collection to be sorted in-place.</param>
+    /// <param name="collection">The collection to be sorted.</param>
     /// <param name="reverse">True to sort in default order; false otherwise.</param>
-    public void Sort(IList<T> collection, bool reverse = false) =>
+    public T[] Sort(IEnumerable<T> collection, bool reverse = false) =>
         this.Sort(collection, reverse ? this._reverseComparer : this._comparer);
 
-    public abstract void Sort(IList<T> collection, Comparer<T> comparer);
+    public abstract T[] Sort(IEnumerable<T> collection, Comparer<T> comparer);
 }
