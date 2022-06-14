@@ -9,9 +9,10 @@ namespace TaskOne.Contracts;
 public interface ISort<T>
 {
     /// <summary>
-    /// Sorts in-place the <paramref name="collection"/> elements.
+    /// Sorts the <paramref name="collection"/> elements.
     /// </summary>
-    /// <param name="collection">The collection to be sorted in-place.</param>
+    /// <param name="collection">The collection to be sorted.</param>
     /// <param name="comparer">Provides means of comparing <paramref name="collection"/> elements.</param>
-    void Sort(IList<T> collection, Comparer<T> comparer);
+    /// <returns>An array of sorted <paramref name="collection"/> elements.</returns>
+    T[] Sort(IEnumerable<T> collection, Comparer<T> comparer);
 }
