@@ -2,6 +2,9 @@ using Microsoft.Toolkit.HighPerformance;
 
 namespace TaskTwo.Contracts;
 
+/// <summary>
+/// Defines a method to get the area of the largest square comprised of true values.
+/// </summary>
 public interface ILargestSquare
 {
     /// <summary>
