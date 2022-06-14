@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Toolkit.HighPerformance;
 
 namespace TaskTwo;
-
 using Contracts;
     
 /// <summary>Dynamic programming implementation of the <see cref="ILargestSquare"/> contract.</summary>

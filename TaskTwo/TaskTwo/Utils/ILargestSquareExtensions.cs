@@ -3,7 +3,6 @@ using System;
 using Microsoft.Toolkit.HighPerformance;
 
 namespace TaskTwo.Utils;
-
 using Contracts;
 using Utils;
     
