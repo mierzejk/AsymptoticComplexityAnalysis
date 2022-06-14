@@ -6,7 +6,9 @@ using Microsoft.Toolkit.HighPerformance;
 namespace TaskTwo;
 using Contracts;
     
-/// <summary>Dynamic programming implementation of the <see cref="ILargestSquare"/> contract.</summary>
+/// <summary>
+/// Dynamic programming implementation of the <see cref="ILargestSquare"/> contract.
+/// </summary>
 public sealed class DynamicProgramming : ILargestSquare
 {
     public uint GetLargestSquareArea(in ReadOnlySpan2D<bool> matrix)
