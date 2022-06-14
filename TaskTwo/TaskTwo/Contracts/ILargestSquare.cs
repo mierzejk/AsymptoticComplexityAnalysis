@@ -5,7 +5,7 @@ namespace TaskTwo.Contracts;
 public interface ILargestSquare
 {
     /// <summary>
-    /// Given a two-dimensional matrix of <seealso cref="bool"/> values, returns the area of the largest square that
+    /// Given a two-dimensional matrix of <see cref="bool"/> values, returns the area of the largest square that
     /// contains only true elements.
     /// </summary>
     /// <param name="matrix">A two-dimensional array of binary values.</param>

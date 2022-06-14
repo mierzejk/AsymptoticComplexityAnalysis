@@ -15,7 +15,7 @@ public static class LargestSquareExtensions
     /// </summary>
     /// <param name="object">The object being extended.</param>
     /// <param name="matrix">A two-dimensional array of binary values.</param>
-    /// <param name="convert">The function to convert a <typeparamref name="T"/> object to a <seealso cref="bool"/> instance.</param>
+    /// <param name="convert">The function to convert a <typeparamref name="T"/> object to a <see cref="bool"/> instance.</param>
     /// <returns>The area of the largest square that contains only unities.</returns>
     public static uint GetLargestSquareArea<T>(this ILargestSquare @object,
                                                in ReadOnlyMemory2D<T?> matrix,
@@ -23,7 +23,7 @@ public static class LargestSquareExtensions
         @object.GetLargestSquareArea(matrix.Convert(convert));
         
     /// <summary>
-    /// Given a two-dimensional matrix of <seealso cref="uint"/> values, returns the area of the largest square that
+    /// Given a two-dimensional matrix of <see cref="uint"/> values, returns the area of the largest square that
     /// contains only unities.
     /// </summary>
     /// <param name="object">The object being extended.</param>
@@ -33,7 +33,7 @@ public static class LargestSquareExtensions
         @object.GetLargestSquareArea(matrix.Convert(Convert.ToBoolean));
         
     /// <summary>
-    /// Given a two-dimensional matrix of <seealso cref="int"/> values, returns the area of the largest square that
+    /// Given a two-dimensional matrix of <see cref="int"/> values, returns the area of the largest square that
     /// contains only ones.
     /// </summary>
     /// <param name="object">The object being extended.</param>
