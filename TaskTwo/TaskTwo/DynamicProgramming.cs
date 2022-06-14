@@ -24,8 +24,8 @@ public sealed class DynamicProgramming : ILargestSquare
                 
             // iterate over columns (row cells)
             for (var j = 0; j < n; j++)
+                // bottom-right square corner test, followed by updating the side length accordingly
                 prevRow[j] = prevSide[0] = matrix[i, j] switch {
-                    // bottom-right square corner test, followed by updating the side length accordingly
                     true => 1 + prevSide.Concat(prevRow[j..(j+2)]).Min(),
                     false => 0U
                 };
