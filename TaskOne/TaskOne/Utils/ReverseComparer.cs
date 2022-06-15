@@ -14,6 +14,7 @@ public class ReverseComparer<T> : Comparer<T>
     /// </summary>
     public new static ReverseComparer<T> Default { get; } = new(Comparer<T>.Default);
         
+    // ReSharper disable once MemberCanBePrivate.Global
     public IComparer<T> BaseComparer { get; }
 
     /// <summary>
