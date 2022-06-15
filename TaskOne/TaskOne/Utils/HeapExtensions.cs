@@ -7,7 +7,7 @@ internal static class HeapExtensions
     private static int? TryChild<T>(in ReadOnlySpan<T> span, int nodeIndex, int offset, out T? childValue)
     {
         childValue = default;
-        var childIndex = nodeIndex >> 1 + offset;
+        var childIndex = (nodeIndex << 1) + offset;
         if (childIndex >= span.Length) return null;
         childValue = span[childIndex];
         return childIndex;
