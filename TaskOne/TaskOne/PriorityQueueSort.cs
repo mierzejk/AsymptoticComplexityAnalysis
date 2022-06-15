@@ -7,7 +7,7 @@ namespace TaskOne;
 using Utils;
 
 /// <summary>
-/// A class implementing the <see cref="Contracts.ISort{T}"/> with an array-backed, quaternary min-heap,
+/// A class implementing the <see cref="Contracts.ISort{T}"/> interface with an array-backed, quaternary min-heap,
 /// based on the <see cref="PriorityQueue{TElement,TPriority}"/> class.
 /// </summary>
 /// <typeparam name="T">The type of objects to sort.</typeparam>
