@@ -11,7 +11,13 @@ Because the max‑heap property guarantees the maximal element is always the tre
 * The method overall time complexity is `O(n+n⋅log(n))`=**`O(n⋅log(n))`**.  
 The linear time sorting algorithms, eg. _counting sort_ have not been considered for the task for the sake of a likely massive memory trade‑off, as the array elements are unbounded floating‑point double numbers.
 * The memory complexity is just linear `O(n)` for the array holding the binary max‑heap node elements.
-> log
+> Please be adivised that the base of logarithm equates to `2`, as the **binary** heap is being discussed. Therefore `log` refers precisely to the `log₂`.
+## Supplementary methods
+There are two more sorting procedures implemented in the solution:
+* Another heapsort – **PriorityQueueSort**, that is based on an array-backed, quaternary min-heap available as the [.NET 6 PriorityQueue class](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.priorityqueue-2).
+* [Introspective sort](https://en.wikipedia.org/wiki/Introsort) (**IntroSort**) implemented by the inherent [Array::Sort method](https://docs.microsoft.com/en-us/dotnet/api/system.array.sort), that combines an insertion sort, heapsort and quicksort, depending on the size of the input collection.
+
+Unless there are some specific assumptions and requirements, any of these two out-of-the-box method are very likely to be recommended over a custom implementation in production settings.
 
 # TaskTwo: Largest Square Area Problem
 > Given a two-dimensional matrix of binary values, return the area of the largest square that contains only ones.
@@ -25,7 +31,7 @@ Hence, for every row iteration the `prevRow` array segment is slid one cell left
 As the method employs an _optimal substructure_ (`squareSides` / `prevRow`) that is used in _overlapping sub-problems_ (a cell can be part of already identified square), the algorithm satisfies the **Dynamic Programming** optimization method definition.
 * Time complexity: **`O(m⋅n)`**, as there is a linear **`O(n)`** loop (column iteration) embedded in another linear loop **`O(m)`** (row iteration).
 * Space complexity: **`O(m+n)`** due to the ancillary `squareSides` array size.  
-As a matter of fact, space complexity can be reduced to `O(n)` by doing away with the `squareSides` and promoting `prevRow` to a dynamic collection, for example `List<uint>`. Then at every row iteration the collection would have to be modified, so the last element is discarded and `0` is prepended, incurring performance degradation. This is an academic example of the time-memory complexity trade-off.
+As a matter of fact, space complexity can be reduced to `O(n)` by doing away with the `squareSides` and promoting `prevRow` to a dynamic collection, for example `List<uint>`. Then at every row iteration the collection would have to be modified, so the last element is discarded and `0` is prepended, incurring performance degradation. This is an academic example of the time‑memory complexity trade‑off.
 ## Prototype
 To facilitate .NET 6 / C# 10 solution implementation, the following Python 3.10 prototype has been created. The input `matrix` is comprised of `'0'` and `'1'` characters.
 ```
