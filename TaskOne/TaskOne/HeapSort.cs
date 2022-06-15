@@ -8,31 +8,30 @@ using Utils;
 
 public class HeapSort<T> : CompareSort<T>
 {
-    private static void Heapify(Span<T> span, int index, IComparer<T> comparer)
+    private static void Heapify(T[] segment, int index, IComparer<T> comparer)
     {
-        var maxIndex = index;
-        
-        while (true)
+        ref T RefGreaterChild(int parentIndex, int offset, ref T maxValue, out int refIndex)
         {
-            var maxValue = span[index]; 
-            if (span.TryLeftChild(index, out var value) is {} leftIndex && comparer.Compare(value, maxValue) > 0)
+            var childIndex = (parentIndex << 1) + offset;
+            if (childIndex < segment.Length && comparer.Compare(segment[childIndex], maxValue) > 0)
             {
-                maxIndex = leftIndex;
-                maxValue = value;
-            }
-            if (span.TryRightChild(index, out value) is {} rightIndex && comparer.Compare(value, maxValue) > 0)
-            {
-                maxIndex = rightIndex;
-                maxValue = value;
+                refIndex = childIndex;
+                return ref segment[childIndex];
             }
 
-            if (maxIndex == index)
-                break;
-
-            span[maxIndex] = span[index];
-            span[index] = maxValue!;
-            index = maxIndex;
+            refIndex = parentIndex;
+            return ref maxValue;
         }
+
+        ref var maxValue = ref segment[index];
+        var refIndices = new[]{index, index};
+        do
+        {
+            index = refIndices.Max();
+            maxValue = ref RefGreaterChild(index, 1, ref maxValue, out refIndices[0])!; // left
+            maxValue = ref RefGreaterChild(index, 2, ref maxValue, out refIndices[1])!; // right
+            (segment[index], maxValue) = (maxValue, segment[index]); // swap
+        } while (refIndices.Any(i => i > index));
     }
     
     public HeapSort(IComparer<T>? comparer = null, IComparer<T>? reverseComparer = null)
