@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,40 +45,23 @@ public class HeapSort<T> : CompareSort<T>
         } while (refIndices.Any(i => i > index));
     }
     
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HeapSort{T}"/> class to specified comparers.
+    /// </summary>
+    /// <inheritdoc />
     public HeapSort(IComparer<T>? comparer = null, IComparer<T>? reverseComparer = null)
         : base(comparer, reverseComparer) { }
 
     public override T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer)
     {
-        ArgumentNullException.ThrowIfNull(collection);
-
+        var array = collection.ToArraySmart();
         comparer ??= Comparer<T>.Default;
-        T[] array;
-
-        switch (collection)
-        {
-            case T[] arrayCollection:
-                array = new T[arrayCollection.Length];
-                arrayCollection.CopyTo(array, 0);
-                break;
-            case List<T> listCollection:
-                array = listCollection.ToArray();
-                break;
-            case ICollection<T> sizedCollection:
-                array = new T[sizedCollection.Count];
-                foreach (var (item, i) in sizedCollection.Select(Identity))
-                    array[i] = item;
-                break;
-            default:
-                array = collection.ToArray();
-                break;
-        }
 
         // turn the array into a max-heap
         for (var i = array.Length / 2; i > 0;)
             Heapify(array, --i, array.Length, comparer);
         
-        // swap root (max value) with the last leaf and heapify to restore the max-heap properties
+        // swap root (max value) with the last leaf and heapify to restore the max-heap properties; repeat with an array segment
         for (var i = array.Length - 1; i > 0; i--)
         {
             (array[0], array[i]) = (array[i], array[0]);
