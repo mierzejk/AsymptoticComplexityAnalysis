@@ -6,8 +6,10 @@ public abstract class SortTests
 {
     private Func<IEnumerable<double>, bool, double[]>? _sortMethod;
 
+    // ReSharper disable once MemberCanBePrivate.Global
     protected double[] AscendingSort(IEnumerable<double> collection) => this._sortMethod!(collection, false);
     
+    // ReSharper disable once MemberCanBePrivate.Global
     protected double[] ReversedSort(IEnumerable<double> collection) => this._sortMethod!(collection, true);
 
     protected abstract CompareSort<double> GetSortAlgorithm();
@@ -106,7 +108,22 @@ public abstract class SortTests
         // Act
         var result = this.AscendingSort(input);
         // Assert
-        Assert.That(input, Has.Length.EqualTo(result.Length));
+        Assert.That(result, Has.Length.EqualTo(input.Length));
         CollectionAssert.AreNotEqual(input, result);
+    }
+    
+    [Test]
+    public void Sort_BigRandomCollection_SortedAscending()
+    {
+        // Arrange
+        var rnd = new Random();
+        var input = new List<double>(short.MaxValue);
+        input.AddRange(Enumerable.Range(0, short.MaxValue).Select(_ => rnd.NextDouble()));
+        // Act
+        var result = this.AscendingSort(input);
+        // Assert
+        Assert.That(result, Has.Length.EqualTo(input.Count));
+        CollectionAssert.IsOrdered(result);
+        CollectionAssert.AreEquivalent(input, result);
     }
 }
