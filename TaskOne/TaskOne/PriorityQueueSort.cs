@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using static System.Linq.Enumerable;
 
 namespace TaskOne;
+using Utils;
 
 /// <summary>
 /// A class implementing the <see cref="Contracts.ISort{T}"/> with an array-backed, quaternary min-heap,

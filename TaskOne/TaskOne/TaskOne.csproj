@@ -10,4 +10,8 @@
         <Company>Krzysztof Mierzejewski</Company>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Utils\HeapExtensions.cs" />
+    </ItemGroup>
+
 </Project>

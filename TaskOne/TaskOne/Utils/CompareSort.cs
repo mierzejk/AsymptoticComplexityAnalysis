@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using TaskOne.Contracts;
 
-namespace TaskOne;
-using Utils;
+namespace TaskOne.Utils;
 
 /// <summary>
 /// Provides a base class for implementations of the <see cref="ISort{T}"/> generic interface.

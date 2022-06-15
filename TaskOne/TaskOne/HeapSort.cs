@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace TaskOne;
-
-using static Utils.Helper;
+using Utils;
 
 /// <summary>
 /// max-heap
@@ -35,14 +34,14 @@ public class HeapSort<T> : CompareSort<T>
         }
 
         ref var maxValue = ref segment[index];
-        var refIndices = new[]{index, index};
+        var refIndices = new[] {index, index};
         do
         {
             index = refIndices.Max();
             maxValue = ref RefGreaterChild(index, 1, ref maxValue, out refIndices[0])!; // left
             maxValue = ref RefGreaterChild(index, 2, ref maxValue, out refIndices[1])!; // right
             (segment[index], maxValue) = (maxValue, segment[index]); // swap node value with a greater child 
-        } while (refIndices.Any(i => i > index));
+        } while (refIndices.Any(i => i > index));  // nodes swapped?
     }
     
     /// <summary>
