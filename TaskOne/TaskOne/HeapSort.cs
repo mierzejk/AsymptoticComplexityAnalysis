@@ -4,16 +4,28 @@ using System.Linq;
 
 namespace TaskOne;
 
-using Utils;
+using static Utils.Helper;
 
+/// <summary>
+/// max-heap
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class HeapSort<T> : CompareSort<T>
 {
-    private static void Heapify(T[] segment, int index, IComparer<T> comparer)
+    /// <summary>
+    /// max-heap, heapify down, "from the bottom up" Cormen
+    /// </summary>
+    /// <param name="segment"></param>
+    /// <param name="index"></param>
+    /// <param name="length"></param>
+    /// <param name="comparer"></param>
+    // ReSharper disable once SuggestBaseTypeForParameter
+    private static void Heapify(T[] segment, int index, int length, IComparer<T> comparer)
     {
         ref T RefGreaterChild(int parentIndex, int offset, ref T maxValue, out int refIndex)
         {
             var childIndex = (parentIndex << 1) + offset;
-            if (childIndex < segment.Length && comparer.Compare(segment[childIndex], maxValue) > 0)
+            if (childIndex < length && comparer.Compare(segment[childIndex], maxValue) > 0)
             {
                 refIndex = childIndex;
                 return ref segment[childIndex];
@@ -30,7 +42,7 @@ public class HeapSort<T> : CompareSort<T>
             index = refIndices.Max();
             maxValue = ref RefGreaterChild(index, 1, ref maxValue, out refIndices[0])!; // left
             maxValue = ref RefGreaterChild(index, 2, ref maxValue, out refIndices[1])!; // right
-            (segment[index], maxValue) = (maxValue, segment[index]); // swap
+            (segment[index], maxValue) = (maxValue, segment[index]); // swap node value with a greater child 
         } while (refIndices.Any(i => i > index));
     }
     
@@ -42,14 +54,36 @@ public class HeapSort<T> : CompareSort<T>
         ArgumentNullException.ThrowIfNull(collection);
 
         comparer ??= Comparer<T>.Default;
-        // TODO: arrays, list, ICollection, itp.
-        var array = collection.ToArray();
-        Console.WriteLine(string.Join(@", ", array));
+        T[] array;
 
-        for (var i = array.Length / 2 - 1; i >= 0; i--)
+        switch (collection)
         {
-            Heapify(array, i, comparer);
-            Console.WriteLine(string.Join(@", ", array));
+            case T[] arrayCollection:
+                array = new T[arrayCollection.Length];
+                arrayCollection.CopyTo(array, 0);
+                break;
+            case List<T> listCollection:
+                array = listCollection.ToArray();
+                break;
+            case ICollection<T> sizedCollection:
+                array = new T[sizedCollection.Count];
+                foreach (var (item, i) in sizedCollection.Select(Identity))
+                    array[i] = item;
+                break;
+            default:
+                array = collection.ToArray();
+                break;
+        }
+
+        // turn the array into a max-heap
+        for (var i = array.Length / 2; i > 0;)
+            Heapify(array, --i, array.Length, comparer);
+        
+        // swap root (max value) with the last leaf and heapify to restore the max-heap properties
+        for (var i = array.Length - 1; i > 0; i--)
+        {
+            (array[0], array[i]) = (array[i], array[0]);
+            Heapify(array, 0, i, comparer);
         }
         
         return array;
