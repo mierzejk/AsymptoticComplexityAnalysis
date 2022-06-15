@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using static System.Linq.Enumerable;
 
 namespace TaskOne;
-using Utils;
 
 /// <summary>
 /// A class implementing the <see cref="Contracts.ISort{T}"/> with an array-backed, quaternary min-heap,
@@ -17,10 +16,10 @@ public sealed class PriorityQueueSort<T> : CompareSort<T>
     /// Initializes a new instance of the <see cref="PriorityQueueSort{T}"/> class to specified comparers.
     /// </summary>
     /// <inheritdoc />
-    public PriorityQueueSort(Comparer<T>? comparer = null, ReverseComparer<T>? reverseComparer = null)
+    public PriorityQueueSort(IComparer<T>? comparer = null, IComparer<T>? reverseComparer = null)
         : base(comparer, reverseComparer) { }
 
-    public override T[] Sort(IEnumerable<T> collection, Comparer<T>? comparer)
+    public override T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer)
     {
         ArgumentNullException.ThrowIfNull(collection);
         

@@ -14,5 +14,5 @@ public interface ISort<T>
     /// <param name="collection">The collection to be sorted.</param>
     /// <param name="comparer">Provides means of comparing <paramref name="collection"/> elements.</param>
     /// <returns>An array of sorted <paramref name="collection"/> elements.</returns>
-    T[] Sort(IEnumerable<T> collection, Comparer<T>? comparer);
+    T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer);
 }
