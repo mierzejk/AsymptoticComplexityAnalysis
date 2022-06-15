@@ -56,7 +56,7 @@ public class HeapSort<T> : CompareSort<T>
         var array = collection.ToArraySmart();
         comparer ??= Comparer<T>.Default;
 
-        // turn the array into a max-heap
+        // turn the array into a max-heap by heapifying subtrees.
         for (var i = array.Length / 2; i > 0;)
             Heapify(array, --i, array.Length, comparer);
         
