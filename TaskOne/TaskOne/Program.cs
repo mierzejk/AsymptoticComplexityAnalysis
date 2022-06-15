@@ -18,9 +18,11 @@ public static class Program
         var sort = new PriorityQueueSort<double>();
         Console.WriteLine(string.Join(@", ", sort.Sort(array, reverse: false)));
         var sort2 = new HeapSort<int>();
-        // sort2.Sort(new[] {1, 1, 1, 1, 1}, reverse: false);
-        sort2.Sort(new[] {1, 3, 2, 5, 4}, reverse: false);
-        new HeapSort<double>().Sort(array, reverse: false);
+        var qwe = new[] {1, 3, 2, 5, 4};
+        Console.WriteLine(string.Join(@", ", sort2.Sort(new[] {1, 1, 1, 1, 1}, reverse: true)));
+        Console.WriteLine(string.Join(@", ", sort2.Sort(qwe, reverse: false)));
+
+        Console.WriteLine(string.Join(@", ", new HeapSort<double>().Sort(array, reverse: false)));
         // Console.WriteLine(string.Join(@", ", sort2.Sort(new[] {1, 3, 2, 5, 4}, reverse: false)));
 
         // TODO: Mention O(n) - count sort?, exclude HeapExtensions, add introsort: https://docs.microsoft.com/en-us/dotnet/api/system.array.sort

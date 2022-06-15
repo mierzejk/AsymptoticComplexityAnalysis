@@ -20,16 +20,16 @@ public class HeapSort<T> : CompareSort<T>
     // ReSharper disable once SuggestBaseTypeForParameter
     private static void Heapify(T[] segment, int index, int length, IComparer<T> comparer)
     {
-        ref T RefGreaterChild(int parentIndex, int offset, ref T maxValue, out int refIndex)
+        ref T RefGreaterChild(int offset, ref T maxValue, out int refIndex)
         {
-            var childIndex = (parentIndex << 1) + offset;
+            var childIndex = (index << 1) + offset;
             if (childIndex < length && comparer.Compare(segment[childIndex], maxValue) > 0)
             {
                 refIndex = childIndex;
                 return ref segment[childIndex];
             }
 
-            refIndex = parentIndex;
+            refIndex = index;
             return ref maxValue;
         }
 
@@ -38,8 +38,8 @@ public class HeapSort<T> : CompareSort<T>
         do
         {
             index = refIndices.Max();
-            maxValue = ref RefGreaterChild(index, 1, ref maxValue, out refIndices[0])!; // left
-            maxValue = ref RefGreaterChild(index, 2, ref maxValue, out refIndices[1])!; // right
+            maxValue = ref RefGreaterChild(1, ref maxValue, out refIndices[0])!; // left
+            maxValue = ref RefGreaterChild(2, ref maxValue, out refIndices[1])!; // right
             (segment[index], maxValue) = (maxValue, segment[index]); // swap node value with a greater child 
         } while (refIndices.Any(i => i > index));  // nodes swapped?
     }
