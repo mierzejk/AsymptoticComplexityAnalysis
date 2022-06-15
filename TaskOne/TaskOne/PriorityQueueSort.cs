@@ -20,6 +20,8 @@ public sealed class PriorityQueueSort<T> : CompareSort<T>
     public PriorityQueueSort(IComparer<T>? comparer = null, IComparer<T>? reverseComparer = null)
         : base(comparer, reverseComparer) { }
 
+    /// <inheritdoc />
+    /// <exception cref="ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
     public override T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer)
     {
         ArgumentNullException.ThrowIfNull(collection);

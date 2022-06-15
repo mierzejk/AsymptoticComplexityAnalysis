@@ -25,7 +25,7 @@ public static class Program
         Console.WriteLine(string.Join(@", ", new HeapSort<double>().Sort(array, reverse: false)));
         // Console.WriteLine(string.Join(@", ", sort2.Sort(new[] {1, 3, 2, 5, 4}, reverse: false)));
 
-        // TODO: Mention O(n) - count sort?, exclude HeapExtensions, add introsort: https://docs.microsoft.com/en-us/dotnet/api/system.array.sort
-        // Komentarze do heapsort, testy + opis w readme.
+        // TODO: Mention O(n) - count sort?,
+        // testy + opis w readme.
     }
 }

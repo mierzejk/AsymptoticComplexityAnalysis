@@ -57,6 +57,8 @@ public class HeapSort<T> : CompareSort<T>
     public HeapSort(IComparer<T>? comparer = null, IComparer<T>? reverseComparer = null)
         : base(comparer, reverseComparer) { }
 
+    /// <inheritdoc />
+    /// <exception cref="System.ArgumentNullException"><paramref name="collection"/> is <c>null</c>.</exception>
     public override T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer)
     {
         var array = collection.ToArraySmart();
