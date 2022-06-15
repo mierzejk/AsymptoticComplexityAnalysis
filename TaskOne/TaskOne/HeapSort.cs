@@ -56,14 +56,15 @@ public class HeapSort<T> : CompareSort<T>
     public override T[] Sort(IEnumerable<T> collection, IComparer<T>? comparer)
     {
         var array = collection.ToArraySmart();
+        var arrayLength = array.Length;
         comparer ??= Comparer<T>.Default;
 
         // turn the array into a max-heap by heapifying subtrees.
-        for (var i = array.Length / 2; i > 0;)
-            this.Heapify(array, --i, array.Length, comparer);
+        for (var i = arrayLength / 2; i > 0;)
+            this.Heapify(array, --i, arrayLength, comparer);
         
         // swap root (max value) with the last leaf and heapify to restore the max-heap properties; repeat with an array segment
-        for (var i = array.Length - 1; i > 0; i--)
+        for (var i = arrayLength - 1; i > 0; i--)
         {
             (array[0], array[i]) = (array[i], array[0]);
             this.Heapify(array, 0, i, comparer);
