@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace TaskOne;
@@ -8,6 +9,7 @@ using Utils;
 /// max-heap
 /// </summary>
 /// <typeparam name="T"></typeparam>
+[SuppressMessage("ReSharper", "ClassWithVirtualMembersNeverInherited.Global")]
 public class HeapSort<T> : CompareSort<T>
 {
     /// <summary>
@@ -18,7 +20,7 @@ public class HeapSort<T> : CompareSort<T>
     /// <param name="length"></param>
     /// <param name="comparer"></param>
     // ReSharper disable once SuggestBaseTypeForParameter
-    private static void Heapify(T[] segment, int index, int length, IComparer<T> comparer)
+    protected virtual void Heapify(T[] segment, int index, int length, IComparer<T> comparer)
     {
         ref T RefGreaterChild(int offset, ref T maxValue, out int refIndex)
         {
@@ -58,13 +60,13 @@ public class HeapSort<T> : CompareSort<T>
 
         // turn the array into a max-heap by heapifying subtrees.
         for (var i = array.Length / 2; i > 0;)
-            Heapify(array, --i, array.Length, comparer);
+            this.Heapify(array, --i, array.Length, comparer);
         
         // swap root (max value) with the last leaf and heapify to restore the max-heap properties; repeat with an array segment
         for (var i = array.Length - 1; i > 0; i--)
         {
             (array[0], array[i]) = (array[i], array[0]);
-            Heapify(array, 0, i, comparer);
+            this.Heapify(array, 0, i, comparer);
         }
         
         return array;
