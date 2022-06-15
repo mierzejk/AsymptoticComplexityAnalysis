@@ -47,6 +47,18 @@ public sealed class HelperTests
     }
     
     [Test]
+    public void ToSmartArray_Enumerable_Same()
+    {
+        // Arrange
+        var input = new List<byte?> {1, 2, 3};
+        Thread.MemoryBarrier();
+        // Act
+        var result = (from i in input where i % 2 == 1 select i).ToArraySmart();
+        // Assert
+        CollectionAssert.AreEqual(new byte[] { 1, 3 }, result);
+    }
+    
+    [Test]
     public void ToSmartArray_EmptyEnumerable_EmptyArray()
     {
         // Arrange
