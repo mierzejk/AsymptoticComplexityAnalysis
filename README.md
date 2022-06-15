@@ -12,7 +12,7 @@ As the method employs an _optimal substructure_ (`squareSides` / `prevRow`) that
 * Space complexity: **`O(m+n)`** due to the ancillary `squareSides` array size.  
 As a matter of fact, space complexity can be reduced to `O(n)` by doing away with the `squareSides` and promoting `prevRow` to a dynamic collection, for example `List<uint>`. Then at every row iteration the collection would have to be modified, so the last element is discarded and `0` is prepended, incurring performance degradation. This is an academic example of the time-memory complexity tradeoff.
 ## Prototype
-To facilitate .NET 6 / C# 10 solution implementation, the following Python 3.10 prototype has been created. The input `matrix` is comprised of `0` and `1` charactrers.
+To facilitate .NET 6 / C# 10 solution implementation, the following Python 3.10 prototype has been created. The input `matrix` is comprised of `'0'` and `'1'` charactrers.
 ```
 m, n = len(matrix), len(matrix[0])  # rows, columns
 max_side, square_sides = 0, [0] * (n+1)
