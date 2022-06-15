@@ -1,7 +1,6 @@
 using System;
 
 using Microsoft.Toolkit.HighPerformance;
-using NUnit.Framework;
 
 using TaskTwo;
 using TaskTwo.Contracts;
