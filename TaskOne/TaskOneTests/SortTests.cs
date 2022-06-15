@@ -6,9 +6,9 @@ public abstract class SortTests
 {
     private Func<IEnumerable<double>, bool, double[]>? _sortMethod;
 
-    private double[] AscendingSort(IEnumerable<double> collection) => this._sortMethod!(collection, false);
+    protected double[] AscendingSort(IEnumerable<double> collection) => this._sortMethod!(collection, false);
     
-    private double[] ReversedSort(IEnumerable<double> collection) => this._sortMethod!(collection, true);
+    protected double[] ReversedSort(IEnumerable<double> collection) => this._sortMethod!(collection, true);
 
     protected abstract CompareSort<double> GetSortAlgorithm();
 
