@@ -15,34 +15,34 @@ public class HeapSort<T> : CompareSort<T>
     /// <summary>
     /// max-heap, heapify down, "from the bottom up" Cormen
     /// </summary>
-    /// <param name="segment"></param>
+    /// <param name="array"></param>
     /// <param name="index"></param>
     /// <param name="length"></param>
     /// <param name="comparer"></param>
     // ReSharper disable once SuggestBaseTypeForParameter
-    protected virtual void Heapify(T[] segment, int index, int length, IComparer<T> comparer)
+    protected virtual void Heapify(T[] array, int index, int length, IComparer<T> comparer)
     {
         ref T RefGreaterChild(int offset, ref T maxValue, out int refIndex)
         {
             var childIndex = (index << 1) + offset;
-            if (childIndex < length && comparer.Compare(segment[childIndex], maxValue) > 0)
+            if (childIndex < length && comparer.Compare(array[childIndex], maxValue) > 0)
             {
                 refIndex = childIndex;
-                return ref segment[childIndex];
+                return ref array[childIndex];
             }
 
             refIndex = index;
             return ref maxValue;
         }
 
-        ref var maxValue = ref segment[index];
+        ref var maxValue = ref array[index];
         var refIndices = new[] {index, index};
         do
         {
             index = refIndices.Max();
             maxValue = ref RefGreaterChild(1, ref maxValue, out refIndices[0])!; // left
             maxValue = ref RefGreaterChild(2, ref maxValue, out refIndices[1])!; // right
-            (segment[index], maxValue) = (maxValue, segment[index]); // swap node value with a greater child 
+            (array[index], maxValue) = (maxValue, array[index]); // swap node value with a greater child 
         } while (refIndices.Any(i => i > index));  // nodes swapped?
     }
     
