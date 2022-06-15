@@ -6,19 +6,23 @@ namespace TaskOne;
 using Utils;
 
 /// <summary>
-/// max-heap
+/// A class implementing the <see cref="Contracts.ISort{T}"/> interface with an array-backed, binary max-heap.
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">The type of objects to sort.</typeparam>
 [SuppressMessage("ReSharper", "ClassWithVirtualMembersNeverInherited.Global")]
 public class HeapSort<T> : CompareSort<T>
 {
     /// <summary>
-    /// max-heap, heapify down, "from the bottom up" Cormen
+    /// Rearranges the <paramref name="array"/> elements by swapping respective parent-child nodes, so the data
+    /// structure satisfies the max-heap property.
     /// </summary>
-    /// <param name="array"></param>
-    /// <param name="index"></param>
-    /// <param name="length"></param>
-    /// <param name="comparer"></param>
+    /// <param name="array">The array representation of a binary heap.</param>
+    /// <param name="index">The index of a node to start the "heapifying down" algorithm with.</param>
+    /// <param name="length">Limits the number of <paramref name="array"/> cells considered the binary heap nodes.</param>
+    /// <param name="comparer">Provides means of comparing <paramref name="array"/> elements.</param>
+    /// <remarks>The method implements the "heapify down" in-place approach (or "from the bottom up" according to
+    /// Cormen's "Algorithms Unlocked" book), so its time complexity is O(n). The opposite "up" approach ("starting with
+    /// an empty binary heap") would require O(n⋅log(n)) time to complete.</remarks>
     // ReSharper disable once SuggestBaseTypeForParameter
     protected virtual void Heapify(T[] array, int index, int length, IComparer<T> comparer)
     {
