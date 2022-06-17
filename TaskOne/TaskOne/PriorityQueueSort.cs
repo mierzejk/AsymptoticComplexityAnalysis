@@ -26,11 +26,9 @@ public sealed class PriorityQueueSort<T> : CompareSort<T>
     {
         ArgumentNullException.ThrowIfNull(collection);
         
-        PriorityQueue<T, T> minHeap;
-        if (collection is ICollection<T> sized)
-            minHeap = new PriorityQueue<T, T>(sized.Count, comparer);
-        else
-            minHeap = new PriorityQueue<T, T>(comparer);
+        var minHeap = collection is ICollection<T> sized
+            ? new PriorityQueue<T, T>(sized.Count, comparer)
+            : new PriorityQueue<T, T>(comparer);
         
         minHeap.EnqueueRange(from item in collection
                              select (item, item));
