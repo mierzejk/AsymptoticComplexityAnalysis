@@ -34,7 +34,7 @@ public abstract class CompareSort<T> : ISort<T>
     /// Sorts the <paramref name="collection"/> elements.
     /// </summary>
     /// <param name="collection">The collection to be sorted.</param>
-    /// <param name="reverse">True to sort in default order; false otherwise.</param>
+    /// <param name="reverse">True to sort in reversed order; false for default.</param>
     public T[] Sort(IEnumerable<T> collection, bool reverse = false) =>
         this.Sort(collection, reverse ? this._reverseComparer : this._comparer);
 
