@@ -14,12 +14,12 @@ public sealed class DynamicProgramming : ILargestSquare
     public uint GetLargestSquareArea(in ReadOnlySpan2D<bool> matrix)
     {
         var (m, n) = (matrix.Height, matrix.Width);  // rows, columns
-        var (squareSides, maxSide) = (new uint[m+n], new uint[1]);
+        var (squareSides, maxSide) = (new ArraySegment<uint>(new uint[m+n]), new uint[1]);
             
         // iterate over rows
         for (var i = 0; i < m; i++)
         {
-            var prevRow = new ArraySegment<uint>(squareSides, m-i-1, n+1);
+            var prevRow = squareSides.Slice(m-i-1, n+1);
             var prevSide = new uint[1];
                 
             // iterate over columns (row cells)

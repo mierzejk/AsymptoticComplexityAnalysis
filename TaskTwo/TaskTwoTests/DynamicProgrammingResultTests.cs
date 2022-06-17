@@ -54,7 +54,7 @@ public sealed class DynamicProgrammingResultTests
     }
         
     [Test]
-    public void LargestSquare_AllOneSquare_SideSquared()
+    public void LargestSquare_SquareAllOne_SideSquared()
     {
         // Arrange
         const int sideLength = 10;
@@ -67,7 +67,7 @@ public sealed class DynamicProgrammingResultTests
     }
         
     [Test]
-    public void LargestSquare_AllOneVerticalRectangle_ShortSideSquared()
+    public void LargestSquare_VerticalRectangleAllOne_ShortSideSquared()
     {
         // Arrange
         const int sideLength = 10;
@@ -80,7 +80,7 @@ public sealed class DynamicProgrammingResultTests
     }
         
     [Test]
-    public void LargestSquare_AllOneHorizontalRectangle_ShortSideSquared()
+    public void LargestSquare_HorizontalRectangleAllOne_ShortSideSquared()
     {
         // Arrange
         const int sideLength = 10;
