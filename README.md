@@ -41,7 +41,7 @@ max_side, square_sides = 0, [0] * (n+1)
 # iterate over rows
 for i in range(m):
     prev_side = 0
-	# iterate over columns (row cells)
+    # iterate over columns (row cells)
     for j in range(n):
         square_sides[j] = prev_side = 0 if r'0' == matrix[i][j] else 1 + min(prev_side, *square_sides[j:j+2])
 
